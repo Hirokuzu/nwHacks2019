@@ -7,6 +7,7 @@ public class MoveableArea : MonoBehaviour
 {
     [SerializeField]
     private UnitData unitData;
+    public Tilemap tilemap;
     [SerializeField]
     private static Tile Green;
     [SerializeField]
@@ -28,8 +29,11 @@ public class MoveableArea : MonoBehaviour
 
     }
     //sets tiles around unit to lit up 
-    public static void getMoveableCells(Vector3Int pos, int mov)
+    public void getMoveableCells()
     {
+        GridLayout gridLayout = transform.GetComponentInParent<GridLayout>();
+        Vector3Int pos = gridLayout.WorldToCell(transform.position);
+        int mov = unitData.Mov;
         for (int i = -mov; i <= mov; i++)
         {
             for (int j = -mov; j <= mov; j++)
@@ -39,7 +43,7 @@ public class MoveableArea : MonoBehaviour
                 {
                     if (!(i == 0 && j == 0))
                     {
-                        //Vector3Int Pos = Tilemap.WorldToCell(pos);
+                        //pos = gridLayout.WorldToCell(transform.position);
                         pos.x += i;
                         pos.y += j;
                         //Tilemap.SetTile(pos, Green);

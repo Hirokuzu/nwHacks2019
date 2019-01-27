@@ -14,20 +14,14 @@ public class MoveToClickInput : MonoBehaviour
         {
             var clickedPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
             int a = (int)Vector3.Distance(clickedPos, transform.position);
-            if (a <= unitData.Mov) {
-                if (Math.Abs(Math.Abs(clickedPos.x) - Math.Abs(transform.position.x)) > Math.Abs(Math.Abs(clickedPos.y) - Math.Abs(transform.position.y))) 
-                {
-                    clickedPos.x = (int)clickedPos.x;
-                    clickedPos.y = transform.position.y;
-                }
-                else
-                {
-                    clickedPos.x = transform.position.x;
-                    clickedPos.y = (int)clickedPos.y;
-                }
+            if (Math.Abs((int)clickedPos.x - (int)transform.position.x + (int)clickedPos.y - (int)transform.position.y) <= unitData.Mov) {
+                clickedPos.x = (int)clickedPos.x;
+                clickedPos.y = (int)clickedPos.y;
                 transform.position = clickedPos;
                 Debug.Log(transform.position);
+                Debug.Log(unitData.Mov);
             }
+           
         }
     }
 }

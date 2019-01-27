@@ -36,9 +36,9 @@ public class Unit : MonoBehaviour
         //Debug.Log(unitData.Mov);
         //Debug.Log(unitData.Special);
         Hover = true;
-        GridLayout gridLayout = transform.GetComponentInParent<GridLayout>();
-        Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
-        MoveableArea.getMoveableCells(cellPosition, unitData.Mov);
+        //GridLayout gridLayout = transform.GetComponentInParent<GridLayout>();
+        //Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
+        //MoveableArea.getMoveableCells();
 
     }      
 

@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-static class Constants
+
+[System.Serializable]
+public class UnitClickEvent : UnityEvent<Vector3Int, int>
 {
-    public const int BoardSize = 100;
+
 }
 
 public class Unit : MonoBehaviour
 {
     [SerializeField]
     private UnitData unitData;
+    [SerializeField]
     private bool Hover;
-
+    [SerializeField]
+    private UnitClickEvent unitClickEvent;
     //display health, attack, special
     private void OnGUI()
     {
@@ -25,12 +30,15 @@ public class Unit : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        Debug.Log(unitData.Name);
-        Debug.Log(unitData.HP);
-        Debug.Log(unitData.Attack);
-        Debug.Log(unitData.Mov);
-        Debug.Log(unitData.Special);
+        //Debug.Log(unitData.Name);
+        //Debug.Log(unitData.HP);
+        //Debug.Log(unitData.Attack);
+        //Debug.Log(unitData.Mov);
+        //Debug.Log(unitData.Special);
         Hover = true;
+        GridLayout gridLayout = transform.GetComponentInParent<GridLayout>();
+        Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
+        MoveableArea.getMoveableCells(cellPosition, unitData.Mov);
 
     }      
 
@@ -38,26 +46,6 @@ public class Unit : MonoBehaviour
     {
         Hover = false;
     }
-
-    UnityEngine.AI.NavMeshAgent agent;
-
-    private void Start()
-    {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-    }
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
-            {
-                agent.destination = hit.point;
-            }
-        }
-    }
-
+    
 
 }

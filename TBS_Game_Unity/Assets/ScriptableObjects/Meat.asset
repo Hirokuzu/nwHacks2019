@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Meat
   hp: 0
   attack: 0
-  mov: 0
+  mov: 1
   special: 

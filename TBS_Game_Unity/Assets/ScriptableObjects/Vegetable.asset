@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75afdab1c1dae614cb3628bcd5a97378, type: 3}
-  m_Name: New Unit 2
+  m_Name: Vegetable
   m_EditorClassIdentifier: 
   name: Vegetable
   hp: 0
